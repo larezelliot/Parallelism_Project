@@ -45,8 +45,8 @@ int num_substring(int t)
 	int i,j,k;
 	int count;
 	int total = 0;
-
-	for (i = 0; i <= (n1-n2); i++){   
+	int sub_n = (n1+NUM_THREADS-1)/NUM_THREADS; 
+	for (i = t*sub_n; i <= (n1-n2); i++){   
 		count=0;
 		for(j = i,k = 0; k < n2; j++,k++){  /*search for the next string of size of n2*/  
 			if (*(s1+j)!=*(s2+k)){
