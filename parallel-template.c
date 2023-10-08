@@ -44,11 +44,11 @@ int num_substring(int t)
 {
 	int i,j,k;
 	int count;
-	int total = 0;
+	int sub_total = 0;
 	int sub_n = (n1 + NUM_THREADS - 1) / NUM_THREADS;
 	int i_begin = t * sub_n;
 	int i_end = i_begin + sub_n;
-	for (i = i_begin; i <= (n1-n2) && i <= i_end; i++){   
+	for (i = i_begin; i <= i_end && i <= (n1-n2); i++){   
 		count=0;
 		for(j = i,k = 0; k < n2; j++,k++){  /*search for the next string of size of n2*/  
 			if (*(s1+j)!=*(s2+k)){
@@ -58,11 +58,11 @@ int num_substring(int t)
 			}
 
 			if(count==n2){  
-				total++;		/*find a substring in this step*/   
+				sub_total++;		/*find a substring in this step*/   
 			}                       
 		}
 	}
-	return total;
+	return sub_total;
 }
 
 
@@ -70,6 +70,7 @@ void *calSubStringThread(void *threadid){
     long tid;
     tid = (long)threadid;
     int num = num_substring(tid);
+    countArray[tid] = num;
     printf("This is thread %ld, num of substring %s is %d\n", tid, s2, num);
     pthread_exit(NULL);
 }
@@ -93,6 +94,10 @@ int main(int argc, char *argv[])
 
     for(t=0; t<NUM_THREADS; t++){
         pthread_join(threads[t], NULL);
+    }
+    
+    for(t=0; t<NUM_THREADS; t++){
+        totalNum += countArray[t];
     }
 
  	printf("The number of substrings is: %d\n", totalNum);
