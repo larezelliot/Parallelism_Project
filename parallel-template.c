@@ -42,10 +42,25 @@ int readf(FILE *fp)
 
 int num_substring(int t)
 {
-//add your logic here
-//1, how to distribute different parts of string s1 into different threads
-//2, how to sum up the total number of substring from all threads
-	return 0;
+	int i,j,k;
+	int count;
+	int total = 0;
+
+	for (i = 0; i <= (n1-n2); i++){   
+		count=0;
+		for(j = i,k = 0; k < n2; j++,k++){  /*search for the next string of size of n2*/  
+			if (*(s1+j)!=*(s2+k)){
+				break;
+			}else{
+				count++;
+			}
+
+			if(count==n2){  
+				total++;		/*find a substring in this step*/   
+			}                       
+		}
+	}
+	return total;
 }
 
 
