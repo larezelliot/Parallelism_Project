@@ -32,7 +32,7 @@ int readf(FILE *fp)
 	n2=strlen(s2); /*length of s2*/
 
 	printf("n1 is: %d\n", n1);
-	printf("n2 is: %d\n", en2);
+	printf("n2 is: %d\n", n2);
 
 	if(s1==NULL || s2==NULL || n1<n2)  /*when error exit*/
 		return -1;
