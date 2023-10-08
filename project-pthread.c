@@ -19,7 +19,7 @@ int readf(FILE *fp)
 	if(s1==NULL){
 		printf("ERROR: Out of memory!\n");
 		return -1;
-	}
+	}	
 	s2=(char *)malloc(sizeof(char)*MAX);
 	if(s2==NULL){
 		printf("ERROR: Out of memory\n");
@@ -32,7 +32,7 @@ int readf(FILE *fp)
 	n2=strlen(s2); /*length of s2*/
 
 	printf("n1 is: %d\n", n1);
-	printf("n2 is: %d\n", n2);
+	printf("n2 is: %d\n", en2);
 
 	if(s1==NULL || s2==NULL || n1<n2)  /*when error exit*/
 		return -1;
